@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    environment:
+      TZ: "UTC"
+      ENVIRONMENT: development
+      KAFKA_URL: kafka:9092
+      KAFKA_ZOOKEEPER_URL: zookeeper:2181
+    depends_on:
+      - kafka
+      - zookeeper
+
+  zookeeper:
+    image: debezium/zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: debezium/kafka
+    environment:
+      ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
