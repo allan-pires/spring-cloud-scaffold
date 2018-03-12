@@ -1,0 +1,16 @@
+*.class
+.classpath
+.project
+.settings/
+target/
+**/bin/
+.metadata
+.idea
+*.iml
+.DS_Store
+.env
+*.swp
+_projects/
+_steps/
+_builds/
+_cache/
